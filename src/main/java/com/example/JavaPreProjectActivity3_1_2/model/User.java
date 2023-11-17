@@ -2,7 +2,12 @@ package com.example.JavaPreProjectActivity3_1_2.model;
 
 import jakarta.persistence.Entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import java.util.Objects;
 
 @Entity
 public class User {
@@ -57,5 +62,21 @@ public class User {
 
     public void setPassportNumberSeries(String passportNumberSeries) {
         this.passportNumberSeries = passportNumberSeries;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(passportNumberSeries, user.passportNumberSeries);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, passportNumberSeries);
     }
 }
